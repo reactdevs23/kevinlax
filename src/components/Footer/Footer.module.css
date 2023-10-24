@@ -1,0 +1,10 @@
+.footer {
+  padding: 50px 5%;
+  background: url(../../images/footerBg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.text {
+  text-align: center;
+}
