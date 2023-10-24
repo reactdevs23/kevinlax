@@ -6,5 +6,11 @@
   background-repeat: no-repeat;
 }
 .text {
+  color: #adadad;
+  font-family: Work Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   text-align: center;
 }

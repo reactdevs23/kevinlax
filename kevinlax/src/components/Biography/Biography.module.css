@@ -1,0 +1,51 @@
+.wrapper {
+  max-width: 912px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.title {
+  color: #f8965a;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.image {
+  display: block;
+  max-width: 548px;
+  width: 100%;
+  margin: 0 auto;
+}
+.info {
+  color: #fff;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 187.5%;
+  letter-spacing: 0.48px;
+}
+
+.partnerWrapper {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 50px;
+}
