@@ -28,7 +28,7 @@ const HeroSection = () => {
     },
   ];
   const videoRef = useRef(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -47,19 +47,17 @@ const HeroSection = () => {
   return (
     <div className={styles.wrapper} id="hero">
       <video
+        poster={heroImg}
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        onLoadEnd={() => setVideoLoaded(true)}
         className={[styles.video, "parallax-video"].join(" ")}
       >
         <source src="video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
-      {!videoLoaded && <img src={heroImg} alt="#" className={styles.video} />}
 
       <img ref={videoRef} src={heroImg} alt="#" className={styles.image} />
       <div className={styles.detailsContainer}>
