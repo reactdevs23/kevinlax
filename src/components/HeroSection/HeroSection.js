@@ -37,10 +37,7 @@ const HeroSection = () => {
       const offset = window.pageYOffset;
       video.style.transform = `translate3d(0, ${offset * 0.5}px, 0)`;
     };
-    video.addEventListener("canplaythrough", () => {
-      // Video is loaded and can be played
-      setVideoLoaded(true);
-    });
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -49,21 +46,20 @@ const HeroSection = () => {
   }, []);
   return (
     <div className={styles.wrapper} id="hero">
-      {videoLoaded ? (
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={[styles.video, "parallax-video"].join(" ")}
-        >
-          <source src="video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      ) : (
-        <img src={heroImg} alt="#" className={styles.video} />
-      )}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        onLoadEnd={() => setVideoLoaded(true)}
+        className={[styles.video, "parallax-video"].join(" ")}
+      >
+        <source src="video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {!videoLoaded && <img src={heroImg} alt="#" className={styles.video} />}
 
       <img ref={videoRef} src={heroImg} alt="#" className={styles.image} />
       <div className={styles.detailsContainer}>
