@@ -124,15 +124,30 @@ const Music = () => {
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
 
+  const [itemClasses, setItemClasses] = useState(
+    Array(data.length).fill("fadeIn")
+  );
+
+  const handleItemClick = (index) => {
+    setModal(true);
+    setActive(index);
+  };
+
+  const handleTabClick = (tab) => {
+    setCurrentTab(tab);
+    const newClasses = Array(data.length).fill("fadeOut");
+    setItemClasses(newClasses);
+    setTimeout(() => {
+      setItemClasses(Array(data.length).fill("fadeIn"));
+    }, 300);
+  };
+
   const filteredData = data.filter((item) =>
     currentTab.toLowerCase() === "all"
       ? true
       : item.category.toLowerCase() === currentTab.toLowerCase()
   );
-  const handleClick = (index) => {
-    setModal(true);
-    setActive(index);
-  };
+
   return (
     <>
       <div className={[styles.wrapper, "mainWrapper"].join(" ")} id="music">
@@ -140,9 +155,12 @@ const Music = () => {
         <div className={styles.tabs}>
           {tabs.map((tab, id) => (
             <p
-              className={styles.tab}
+              className={[
+                styles.tab,
+                tab.toLowerCase() === currentTab.toLowerCase() && styles.active,
+              ].join(" ")}
               key={id}
-              onClick={() => setCurrentTab(tab)}
+              onClick={() => handleTabClick(tab)}
             >
               {tab}
             </p>
@@ -151,9 +169,11 @@ const Music = () => {
         <div className={styles.items}>
           {filteredData.map((el, i) => (
             <div
-              className={styles.imageWrapper}
+              className={[styles.imageWrapper, styles[itemClasses[i]]].join(
+                " "
+              )}
               key={i}
-              onClick={() => handleClick(i)}
+              onClick={() => handleItemClick(i)}
             >
               <img src={el.img} alt="#" className={styles.image} />
             </div>

@@ -13,7 +13,7 @@ const Navbar = () => {
     { navItem: "PRESS", to: "press" },
     { navItem: "CONTACT", to: "contact" },
   ];
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScroll = () => {

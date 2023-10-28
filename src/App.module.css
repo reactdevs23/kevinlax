@@ -2,6 +2,17 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
-  min-height: 234px;
-  max-height: 300px;
+  min-height: 220px;
+  height: 300px;
+
+  overflow: hidden;
+
+  display: block;
+  position: relative;
+  z-index: -1;
+}
+@media only screen and (max-width: 767px) {
+  .image {
+    height: auto;
+  }
 }

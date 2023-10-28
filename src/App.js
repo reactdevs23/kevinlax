@@ -1,3 +1,5 @@
+import React, { useRef, useEffect } from "react";
+import { Parallax } from "react-parallax";
 import HeroSection from "./components/HeroSection/HeroSection";
 import Music from "./components/Music/Music";
 import styles from "./App.module.css";
@@ -9,16 +11,51 @@ import Contact from "./components/Contact/Contact";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleScroll = () => {
+      const offset = window.pageYOffset;
+      video.style.transform = `translate3d(0, ${offset * 0.5}px, 0)`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
       <Navbar />
       <HeroSection />
       <Music />
-      <img src={bg1} alt="#" className={styles.image} />
+
+      <Parallax
+        bgImage={bg1}
+        strength={500}
+        className={styles.image}
+      ></Parallax>
+
       <Biography />
-      <img src={bg2} alt="#" className={styles.image} />
+
+      <Parallax
+        bgImage={bg2}
+        strength={500}
+        className={styles.image}
+      ></Parallax>
+
       <Press />
-      <img src={bg3} alt="#" className={styles.image} />
+
+      <Parallax
+        bgImage={bg3}
+        strength={500}
+        className={styles.image}
+      ></Parallax>
+
       <Contact />
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./HeroSection.module.css";
 import {
   heroImg,
@@ -9,6 +9,7 @@ import {
   soundCloud,
   spotify,
 } from "../../images";
+import { Parallax } from "react-parallax";
 
 const HeroSection = () => {
   const socials = [
@@ -27,10 +28,36 @@ const HeroSection = () => {
       ],
     },
   ];
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleScroll = () => {
+      const offset = window.pageYOffset;
+      video.style.transform = `translate3d(0, ${offset * 0.5}px, 0)`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className={styles.wrapper} id="hero">
-      {" "}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className={[styles.video, "parallax-video"].join(" ")}
+      >
+        <source src="video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>{" "}
       <img src={heroImg} alt="#" className={styles.image} />
       <div className={styles.detailsContainer}>
         <div className={styles.socialContainer}>
