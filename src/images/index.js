@@ -31,6 +31,7 @@ import ea from "./ea.png";
 import universal from "./universal.png";
 import dreamWorks from "./dreamworks.png";
 import appleTv from "./appleTv.png";
+import footerBg from "./footerBg.png";
 
 export {
   logo,
@@ -66,4 +67,5 @@ export {
   universal,
   dreamWorks,
   appleTv,
+  footerBg,
 };
