@@ -29,6 +29,7 @@ const HeroSection = () => {
   ];
   const videoRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  console.log(videoLoaded);
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -46,7 +47,11 @@ const HeroSection = () => {
   }, []);
   return (
     <div className={styles.wrapper} id="hero">
+      {!videoLoaded && (
+        <img ref={videoRef} src={heroImg} alt="#" className={styles.video} />
+      )}
       <video
+        style={{ height: !videoLoaded && "0" }}
         ref={videoRef}
         autoPlay
         loop
@@ -58,9 +63,8 @@ const HeroSection = () => {
         <source src="video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {videoLoaded && (
-        <img ref={videoRef} src={heroImg} alt="#" className={styles.video} />
-      )}
+
+      <img ref={videoRef} src={heroImg} alt="#" className={styles.image} />
       <div className={styles.detailsContainer}>
         <div className={styles.socialContainer}>
           {socials.map((el, i) => (
