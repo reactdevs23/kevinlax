@@ -28,27 +28,41 @@ const HeroSection = () => {
     },
   ];
   const videoRef = useRef(null);
+  const imageRef = useRef(null); // Separate reference for the image
   const [videoLoaded, setVideoLoaded] = useState(false);
-  console.log(videoLoaded);
+
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
 
     const handleScroll = () => {
-      const offset = window.pageYOffset;
-      video.style.transform = `translate3d(0, ${offset * 0.5}px, 0)`;
+      if (videoLoaded) {
+        const offset = window.pageYOffset;
+        video.style.transform = `translate3d(0, ${offset * 0.5}px, 0)`;
+      }
+    };
+
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
     };
 
     window.addEventListener("scroll", handleScroll);
 
+    if (video) {
+      video.addEventListener("loadeddata", handleLoadedData);
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (video) {
+        video.removeEventListener("loadeddata", handleLoadedData);
+      }
     };
-  }, []);
+  }, [videoLoaded]);
+
   return (
     <div className={styles.wrapper} id="hero">
       {!videoLoaded && (
-        <img ref={videoRef} src={heroImg} alt="#" className={styles.video} />
+        <img ref={imageRef} src={heroImg} alt="#" className={styles.video} />
       )}
       <video
         style={{ height: !videoLoaded && "0" }}
@@ -57,14 +71,13 @@ const HeroSection = () => {
         loop
         muted
         playsInline
-        onLoadedData={() => setVideoLoaded(true)}
         className={[styles.video, "parallax-video"].join(" ")}
       >
         <source src="video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      <img ref={videoRef} src={heroImg} alt="#" className={styles.image} />
+      <img ref={imageRef} src={heroImg} alt="#" className={styles.image} />
       <div className={styles.detailsContainer}>
         <div className={styles.socialContainer}>
           {socials.map((el, i) => (

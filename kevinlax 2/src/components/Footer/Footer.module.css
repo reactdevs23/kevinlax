@@ -1,0 +1,17 @@
+.footer {
+  padding: 50px 5%;
+  background: url(../../images/footerBg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.text {
+  color: #adadad;
+  font-family: Work Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
